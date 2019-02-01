@@ -27,9 +27,7 @@
     <Compile Remove="Migrations\20190124124631_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\UsersCoontentModelSnapshot.cs" />
     <Compile Remove="Migrations\20190124140946_initial.cs" />
-    <Compile Remove="Models\JiraContext.cs" />
     <Compile Remove="Migrations\20190124140946_initial.Designer.cs" />
-    <Compile Remove="Controllers\UsersController.cs" />
     <Compile Remove="Migrations\20190125112423_initial.cs" />
     <Compile Remove="Migrations\20190125113541_emailinuser.Designer.cs" />
     <Compile Remove="Migrations\AppDBContextModelSnapshot.cs" />
@@ -37,11 +35,6 @@
     <Compile Remove="Migrations\20190128154156_initial.cs" />
     <Compile Remove="Migrations\20190130151557_initial.cs" />
     <Compile Remove="Migrations\20190130153409_initial.cs" />
-    <Compile Remove="Helpers\Encrypt.cs" />
-    <Compile Remove="Helpers\ResultError.cs" />
     <Compile Remove="Migrations\20190130153409_initial.Designer.cs" />
-    <Compile Remove="Models\Certificates.cs" />
-    <Compile Remove="Models\Jira.cs" />
-    <Compile Remove="Models\Users.cs" />
   </ItemGroup>
 </Project>

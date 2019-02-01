@@ -1,32 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GttApiWeb.Models;
-namespace GttApiWeb.Controllers
+using GttApiWeb.Helpers;
+
+namespace ApiGTT.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly AppDBContext _context;
 
-        private readonly UsersContext _context;
-
-        public UsersController(UsersContext context)
+        public UsersController(AppDBContext context)
         {
             this._context = context;
-            if (this._context.Users.Count() == 1)
+            if (this._context.Users.Count() == 0)
             {
-                Console.WriteLine("No existen usuarios");
+                Console.WriteLine("No existe usuarios");
                 Users usuario = new Users();
-                //usuario.username = "Alejandro";
-                //usuario.password = "pass2";
+                usuario.username = "alex2";
+                usuario.password = Encrypt.Hash("alex");
                 this._context.Users.Add(usuario);
                 this._context.SaveChanges();
             }
         }
-
 
         // GET api/users
         [HttpGet]
@@ -39,8 +41,8 @@ namespace GttApiWeb.Controllers
         [HttpGet("{id}")]
         public ActionResult<Users> Get(long id)
         {
-        
             Users user = this._context.Users.Find(id);
+
             if (user == null)
             {
                 return NotFound();
@@ -48,14 +50,25 @@ namespace GttApiWeb.Controllers
             return user;
         }
 
-        // POST api/values
+        // POST api/users
         [HttpPost]
-        public ActionResult<Users> Post([FromBody] Users value)
+        public ActionResult<ResultError> Post([FromBody] Users value)
         {
-            this._context.Users.Add(value);
-            this._context.SaveChanges();
-            return value;
-            //StatusCodeResult(200,value);
+
+            Users userExistencia = this._context.Users.Where(
+                            user => user.username == value.username).FirstOrDefault();
+
+            if (userExistencia == null)
+            {
+                value.password = Encrypt.Hash(value.password);
+                value.rolUser = RolUser.user;
+                this._context.Users.Add(value);
+                this._context.SaveChanges();
+                return new ResultError("error", 200, "Usuario creado correctamente.");
+
+            }
+            return new ResultError("error", 209, "El nombre del usuario ya existe.");
+
         }
 
         // PUT api/values/5
@@ -66,22 +79,21 @@ namespace GttApiWeb.Controllers
             user.username = value.username;
             user.password = value.password;
             this._context.SaveChanges();
-
         }
 
-        // DELETE api/users/5
+
         [HttpDelete("{id}")]
-        public string Delete(long id)
+        public ActionResult<string> Delete(long id)
         {
-            Users userEliminar = this._context.Users.Where(user => user.username == "Alejandro").First();
+            Users userEliminar = this._context.Users.Where(
+                user => user.id == id).First();
+            if (userEliminar == null)
+            {
+                return "No existe usuario";
+            }
             this._context.Remove(userEliminar);
             this._context.SaveChanges();
-            return "Se ha borrado ->"+userEliminar.id;
-
-        }
-
-        private class UsersContext
-        {
+            return "Se ha borrado ->" + userEliminar.id;
         }
     }
 }
