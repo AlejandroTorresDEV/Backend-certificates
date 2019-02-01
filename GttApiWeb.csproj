@@ -9,6 +9,7 @@
     <Folder Include="wwwroot\" />
     <DotNetCliToolReference Include=" Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <Folder Include="Helpers\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,5 +40,8 @@
     <Compile Remove="Helpers\Encrypt.cs" />
     <Compile Remove="Helpers\ResultError.cs" />
     <Compile Remove="Migrations\20190130153409_initial.Designer.cs" />
+    <Compile Remove="Models\Certificates.cs" />
+    <Compile Remove="Models\Jira.cs" />
+    <Compile Remove="Models\Users.cs" />
   </ItemGroup>
 </Project>
