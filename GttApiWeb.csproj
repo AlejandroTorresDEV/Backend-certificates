@@ -36,5 +36,6 @@
     <Compile Remove="Migrations\20190130151557_initial.cs" />
     <Compile Remove="Migrations\20190130153409_initial.cs" />
     <Compile Remove="Migrations\20190130153409_initial.Designer.cs" />
+    <Compile Remove="Models\JiraContext.cs" />
   </ItemGroup>
 </Project>
