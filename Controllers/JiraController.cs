@@ -35,6 +35,10 @@ namespace GttApiWeb.Controllers
         [HttpPost]
         public ActionResult<Jira> Post([FromBody] Jira value)
         {
+
+            Jira userExistencia = this._context.Jira.Where(
+                        jira => jira.user_id == value.user_id).FirstOrDefault();
+
             Console.WriteLine("-------------------------------");
             Console.WriteLine(value.ToString());
             this._context.Jira.Add(value);

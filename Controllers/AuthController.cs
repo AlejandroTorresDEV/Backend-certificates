@@ -12,6 +12,8 @@ namespace GttApiWeb.Controllers
     public class AuthController : ControllerBase
     {
 
+        Array secretKey = new byte[] { 164, 60, 194, 0, 161, 189, 41, 38, 130, 89, 141, 164, 45, 170, 159, 209, 69, 137, 243, 216, 191, 131, 47, 250, 32, 107, 231, 117, 37, 158, 225, 234 };
+
         public AuthController(AppDBContext contex)
         {
             this._context = contex;
@@ -35,7 +37,9 @@ namespace GttApiWeb.Controllers
         // POST api/auth
         [HttpPost]
         public ActionResult<ResultError> Post([FromBody] Users value){
-            try{
+
+            try
+            {
                 Users UserResult = this._context.Users.Where(
                 user => user.username.Equals(value.username)).FirstOrDefault();
 
@@ -43,7 +47,13 @@ namespace GttApiWeb.Controllers
                 {
                     if (UserResult.password == Encrypt.Hash(value.password))
                     {
-                        string token = JWT.Encode(value.rolUser, "top secret", JweAlgorithm.PBES2_HS256_A128KW, JweEncryption.A256CBC_HS512);
+                        var payload = new Dictionary<string, object>()
+                        {
+                            { "rol", UserResult.rolUser },
+                            { "name", UserResult.username }
+                        };
+                        string token = Jose.JWT.Encode(payload, secretKey, JwsAlgorithm.HS256);
+
                         return new ResultError("error", 200, "Login realizado correctamente.", token, "" + UserResult.rolUser);
                     }
                 }

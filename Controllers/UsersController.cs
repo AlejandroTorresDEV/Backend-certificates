@@ -19,9 +19,9 @@ namespace ApiGTT.Controllers
         public UsersController(AppDBContext context)
         {
             this._context = context;
+            //Creamos usuarios iniciales al iniciar el controlador.
             if (this._context.Users.Count() == 0)
             {
-                Console.WriteLine("No existe usuarios");
                 Users usuario = new Users();
                 usuario.username = "alex2";
                 usuario.password = Encrypt.Hash("alex");
@@ -50,13 +50,19 @@ namespace ApiGTT.Controllers
             return user;
         }
 
-        // POST api/users
+
+        /*
+         * POST api/users/
+         * Método para agregar nuevos usuarios.        
+         */
         [HttpPost]
         public ActionResult<ResultError> Post([FromBody] Users value)
         {
 
+            //Comprobamos si existe el usuario
             Users userExistencia = this._context.Users.Where(
                             user => user.username == value.username).FirstOrDefault();
+
 
             if (userExistencia == null)
             {
