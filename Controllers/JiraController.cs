@@ -33,14 +33,22 @@ namespace GttApiWeb.Controllers
         [HttpGet("{id}")]
         public ActionResult<Jira> Get(long id)
         {
-            Jira jiraExistente = this._context.Jira.Where(
-            jira => jira.user_id == id).FirstOrDefault(); 
-
-            if (jiraExistente != null)
+            try
             {
-               return jiraExistente;
+                Jira jiraExistente = this._context.Jira.Where(
+                 jira => jira.user_id == id).FirstOrDefault();
+
+                if (jiraExistente != null)
+                {
+                    return jiraExistente;
+                }
+                return NotFound();
             }
-            return null;
+            catch(Exception e)
+            {
+                return Unauthorized();
+            }
+           
         }
 
         /*
@@ -50,12 +58,14 @@ namespace GttApiWeb.Controllers
         [HttpPost]
         public ActionResult<ResultError> Post([FromBody] Jira value)
         {
-
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine(value);
            Jira userExistencia = this._context.Jira.Where(
                         jira => jira.user_id == value.user_id).FirstOrDefault();
 
             if(userExistencia == null)
             {
+                value.password = Encrypt.Hash(value.password);
                 this._context.Jira.Add(value);
                 this._context.SaveChanges();
                 return new ResultError("error", 200, "Cuenta de Jira creada correctamente.",null,null);
@@ -71,15 +81,13 @@ namespace GttApiWeb.Controllers
         [HttpPut("{id}")]
         public ActionResult<ResultError> Put(long id, [FromBody] Jira value)
         {
-            Jira jira = this._context.Jira.Find(id);
+            Jira jiraExistente = this._context.Jira.Where(
+                                   jira => jira.user_id == id).FirstOrDefault();
 
-            if(jira != null)
+            if (jiraExistente != null)
             {
-                jira.username = value.username;
-                jira.password = value.password;
-                jira.url = value.url;
-                jira.proyect = value.proyect;
-                jira.componente = value.componente;
+                value.password = Encrypt.Hash(value.password);
+             
                 this._context.SaveChanges();
                 return new ResultError("error", 200, "Cuenta de Jira actualizada correctamente.", null, null);
             }
