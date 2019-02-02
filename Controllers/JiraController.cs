@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GttApiWeb.Models;
+using GttApiWeb.Helpers;
 
 namespace GttApiWeb.Controllers
 {
@@ -32,19 +33,24 @@ namespace GttApiWeb.Controllers
             return "value";
         }
 
+        /*
+         * POST api/jira/
+         * Método para agregar una cuenta unica de Jira a un usuario.        
+         */
         [HttpPost]
-        public ActionResult<Jira> Post([FromBody] Jira value)
+        public ActionResult<ResultError> Post([FromBody] Jira value)
         {
 
-           /* Jira userExistencia = this._context.Jira.Where(
-                        jira => jira.user_id == value.user_id).FirstOrDefault();*/
+           Jira userExistencia = this._context.Jira.Where(
+                        jira => jira.user_id == value.user_id).FirstOrDefault();
 
-            Console.WriteLine("-------------------------------");
-            this._context.Jira.Add(value);
-            this._context.SaveChanges();
-            return value;
-            //Console.WriteLine("---------------"+value.Users.id);
-            //return null;
+            if(userExistencia == null)
+            {
+                this._context.Jira.Add(value);
+                this._context.SaveChanges();
+                return new ResultError("error", 200, "Cuenta de Jira creada correctamente.",null,null);
+            }
+            return new ResultError("error", 209, "El usuario ya tiene una cuenta de Jira asociada.", null, null);
         }
 
 
