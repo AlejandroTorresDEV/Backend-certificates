@@ -26,11 +26,21 @@ namespace GttApiWeb.Controllers
             return this._context.Jira.ToList();
         }
 
-        // GET api/values/5
+        /*
+         * GET api/api/id
+         * Método para buscar un usuario por ID
+         */        
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Jira> Get(long id)
         {
-            return "value";
+            Jira jiraExistente = this._context.Jira.Where(
+            jira => jira.user_id == id).FirstOrDefault(); 
+
+            if (jiraExistente != null)
+            {
+               return jiraExistente;
+            }
+            return null;
         }
 
         /*
@@ -55,7 +65,7 @@ namespace GttApiWeb.Controllers
 
 
         /*
-        * PUT api/jira/1
+        * PUT api/jira/id
         * Método para actualizar una cuenta de Jira.       
         */
         [HttpPut("{id}")]
