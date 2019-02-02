@@ -70,13 +70,11 @@ namespace GttApiWeb.Migrations
 
                     b.Property<string>("url");
 
-                    b.Property<long?>("user_idid");
+                    b.Property<long>("user_id");
 
                     b.Property<string>("username");
 
                     b.HasKey("id");
-
-                    b.HasIndex("user_idid");
 
                     b.ToTable("Jira");
                 });
@@ -100,13 +98,6 @@ namespace GttApiWeb.Migrations
                 });
 
             modelBuilder.Entity("GttApiWeb.Models.Certificates", b =>
-                {
-                    b.HasOne("GttApiWeb.Models.Users", "user_id")
-                        .WithMany()
-                        .HasForeignKey("user_idid");
-                });
-
-            modelBuilder.Entity("GttApiWeb.Models.Jira", b =>
                 {
                     b.HasOne("GttApiWeb.Models.Users", "user_id")
                         .WithMany()

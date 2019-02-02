@@ -1,7 +1,9 @@
 ﻿<Properties StartupConfiguration="{50F99A9D-CE3F-4F4A-9CAB-11A535DA752D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AuthController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Jira.cs">
     <Files>
-      <File FileName="Controllers/AuthController.cs" Line="44" Column="11" />
+      <File FileName="Controllers/AuthController.cs" Line="54" Column="52" />
+      <File FileName="Controllers/JiraController.cs" Line="62" Column="29" />
+      <File FileName="Models/Jira.cs" Line="17" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
