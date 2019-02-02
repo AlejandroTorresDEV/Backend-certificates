@@ -81,18 +81,22 @@ namespace GttApiWeb.Controllers
         [HttpPut("{id}")]
         public ActionResult<ResultError> Put(long id, [FromBody] Jira value)
         {
-            Jira jiraExistente = this._context.Jira.Where(
-                                   jira => jira.user_id == id).FirstOrDefault();
 
-            if (jiraExistente != null)
+            Jira jira = this._context.Jira.Find(id);
+
+            if (jira != null)
             {
-                value.password = Encrypt.Hash(value.password);
-             
+                jira.username = value.username;
+                jira.password = Encrypt.Hash(value.password);
+                jira.url = value.url;
+                jira.proyect = value.proyect;
+                jira.componente = value.componente;
+
                 this._context.SaveChanges();
                 return new ResultError("error", 200, "Cuenta de Jira actualizada correctamente.", null, null);
             }
             return new ResultError("error", 209, "No existe una cuenta de Jira con esa ID.", null, null);
-        }
+            }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
