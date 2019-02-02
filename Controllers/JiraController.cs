@@ -36,11 +36,10 @@ namespace GttApiWeb.Controllers
         public ActionResult<Jira> Post([FromBody] Jira value)
         {
 
-            Jira userExistencia = this._context.Jira.Where(
-                        jira => jira.user_id == value.user_id).FirstOrDefault();
+           /* Jira userExistencia = this._context.Jira.Where(
+                        jira => jira.user_id == value.user_id).FirstOrDefault();*/
 
             Console.WriteLine("-------------------------------");
-            Console.WriteLine(value.ToString());
             this._context.Jira.Add(value);
             this._context.SaveChanges();
             return value;
@@ -51,8 +50,12 @@ namespace GttApiWeb.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(long id, [FromBody] Jira value)
         {
+            Jira jira = this._context.Jira.Find(id);
+            jira.username = value.username;
+            jira.password = value.password;
+            this._context.SaveChanges();
         }
 
         // DELETE api/values/5

@@ -50,7 +50,8 @@ namespace GttApiWeb.Controllers
                         var payload = new Dictionary<string, object>()
                         {
                             { "rol", UserResult.rolUser },
-                            { "name", UserResult.username }
+                            { "name", UserResult.username },
+                            { "id" , UserResult.id}
                         };
                         string token = Jose.JWT.Encode(payload, secretKey, JwsAlgorithm.HS256);
 
