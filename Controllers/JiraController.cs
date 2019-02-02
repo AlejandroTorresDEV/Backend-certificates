@@ -54,14 +54,26 @@ namespace GttApiWeb.Controllers
         }
 
 
-        // PUT api/values/5
+        /*
+        * PUT api/jira/1
+        * Método para actualizar una cuenta de Jira.       
+        */
         [HttpPut("{id}")]
-        public void Put(long id, [FromBody] Jira value)
+        public ActionResult<ResultError> Put(long id, [FromBody] Jira value)
         {
             Jira jira = this._context.Jira.Find(id);
-            jira.username = value.username;
-            jira.password = value.password;
-            this._context.SaveChanges();
+
+            if(jira != null)
+            {
+                jira.username = value.username;
+                jira.password = value.password;
+                jira.url = value.url;
+                jira.proyect = value.proyect;
+                jira.componente = value.componente;
+                this._context.SaveChanges();
+                return new ResultError("error", 200, "Cuenta de Jira actualizada correctamente.", null, null);
+            }
+            return new ResultError("error", 209, "No existe una cuenta de Jira con esa ID.", null, null);
         }
 
         // DELETE api/values/5
