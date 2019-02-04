@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GttApiWeb.Models;
 using GttApiWeb.Helpers;
+using System.Net.Http;
+using System.Net;
+using System.Net.Http.Headers;
 
 namespace GttApiWeb.Controllers
 {
@@ -29,14 +32,16 @@ namespace GttApiWeb.Controllers
         /*
          * GET api/api/id
          * Método para buscar un usuario por ID
-         */        
+         */
         [HttpGet("{id}")]
         public ActionResult<Jira> Get(long id)
         {
             try
             {
+                var headerValue = Request.Headers["Authorization"];
+                var token = Jose.JWT.Decode(headerValue.ToString(), Helpers.UtilsTokens.secretKey);
                 Jira jiraExistente = this._context.Jira.Where(
-                 jira => jira.user_id == id).FirstOrDefault();
+                jira => jira.user_id == id).FirstOrDefault();
 
                 if (jiraExistente != null)
                 {
@@ -44,12 +49,15 @@ namespace GttApiWeb.Controllers
                 }
                 return NotFound();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Unauthorized();
+
             }
-           
         }
+
+
+
 
         /*
          * POST api/jira/
@@ -60,15 +68,15 @@ namespace GttApiWeb.Controllers
         {
             Console.WriteLine("---------------------------------");
             Console.WriteLine(value);
-           Jira userExistencia = this._context.Jira.Where(
-                        jira => jira.user_id == value.user_id).FirstOrDefault();
+            Jira userExistencia = this._context.Jira.Where(
+                         jira => jira.user_id == value.user_id).FirstOrDefault();
 
-            if(userExistencia == null)
+            if (userExistencia == null)
             {
                 value.password = Encrypt.Hash(value.password);
                 this._context.Jira.Add(value);
                 this._context.SaveChanges();
-                return new ResultError("error", 200, "Cuenta de Jira creada correctamente.",null,null);
+                return new ResultError("error", 200, "Cuenta de Jira creada correctamente.", null, null);
             }
             return new ResultError("error", 209, "El usuario ya tiene una cuenta de Jira asociada.", null, null);
         }
@@ -96,7 +104,7 @@ namespace GttApiWeb.Controllers
                 return new ResultError("error", 200, "Cuenta de Jira actualizada correctamente.", null, null);
             }
             return new ResultError("error", 209, "No existe una cuenta de Jira con esa ID.", null, null);
-            }
+        }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
@@ -105,4 +113,5 @@ namespace GttApiWeb.Controllers
         }
     }
 }
+
 
