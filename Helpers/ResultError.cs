@@ -9,7 +9,7 @@ namespace GttApiWeb.Helpers
         public string error { get; set; }
         public int statusCode { get; set; }
         public string mensaje { get; set; }
-        public string rol { get; set; }
+        public string id { get; set; }
         public string jwt { get; set; }
 
         public ResultError(String error,int statusCode,String mensaje)
@@ -19,13 +19,13 @@ namespace GttApiWeb.Helpers
             this.mensaje = mensaje;
         }
 
-        public ResultError(String error, int statusCode, String mensaje,String jwt,String rol)
+        public ResultError(String error, int statusCode, String mensaje,String jwt,String id)
         {
             this.error = error;
             this.statusCode = statusCode;
             this.mensaje = mensaje;
             this.jwt = jwt;
-            this.rol = rol;
+            this.id = id;
         }
     }
 }
