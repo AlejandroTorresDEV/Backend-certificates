@@ -24,6 +24,7 @@ namespace ApiGTT.Controllers
             {
                 Users usuario = new Users();
                 usuario.username = "alex2";
+                usuario.rolUser = RolUser.admin;
                 usuario.password = Encrypt.Hash("alex");
                 this._context.Users.Add(usuario);
                 this._context.SaveChanges();
@@ -67,7 +68,6 @@ namespace ApiGTT.Controllers
             if (userExistencia == null)
             {
                 value.password = Encrypt.Hash(value.password);
-                value.rolUser = RolUser.user;
                 this._context.Users.Add(value);
                 this._context.SaveChanges();
                 return new ResultError("error", 200, "Usuario creado correctamente.");
