@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-public enum RolUser { admin,user };
+public enum RolUser { admin,visor };
 namespace GttApiWeb.Models
 {
     public class Users
