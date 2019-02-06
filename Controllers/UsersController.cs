@@ -70,10 +70,10 @@ namespace ApiGTT.Controllers
                 value.password = Encrypt.Hash(value.password);
                 this._context.Users.Add(value);
                 this._context.SaveChanges();
-                return new ResultError("error", 200, "Usuario creado correctamente.");
+                return new ResultError( 200, "Usuario creado correctamente.");
 
             }
-            return new ResultError("error", 209, "El nombre del usuario ya existe.");
+            return new ResultError(209, "El nombre del usuario ya existe.");
 
         }
 

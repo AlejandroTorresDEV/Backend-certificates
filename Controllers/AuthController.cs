@@ -55,10 +55,10 @@ namespace GttApiWeb.Controllers
                         };
                         string token = Jose.JWT.Encode(payload, secretKey, JwsAlgorithm.HS256);
 
-                        return new ResultError("error", 200, "Login realizado correctamente.", token, "" + UserResult.id);
+                        return new ResultError( 200, "Login realizado correctamente.", token, "" + UserResult.id,UserResult.rolUser.ToString());
                     }
                 }
-                return new ResultError("error", 204, "Las credenciales son incorrectas.");
+                return new ResultError(204, "Las credenciales son incorrectas.");
             }
             catch (Exception e){
                 Console.WriteLine(e);

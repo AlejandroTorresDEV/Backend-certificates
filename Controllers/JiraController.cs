@@ -76,9 +76,9 @@ namespace GttApiWeb.Controllers
                 value.password = Encrypt.Hash(value.password);
                 this._context.Jira.Add(value);
                 this._context.SaveChanges();
-                return new ResultError("error", 200, "Cuenta de Jira creada correctamente.", null, null);
+                return new ResultError(200, "Cuenta de Jira creada correctamente.");
             }
-            return new ResultError("error", 209, "El usuario ya tiene una cuenta de Jira asociada.", null, null);
+            return new ResultError(209, "El usuario ya tiene una cuenta de Jira asociada.");
         }
 
 
@@ -101,9 +101,9 @@ namespace GttApiWeb.Controllers
                 jira.componente = value.componente;
 
                 this._context.SaveChanges();
-                return new ResultError("error", 200, "Cuenta de Jira actualizada correctamente.", null, null);
+                return new ResultError(200, "Cuenta de Jira actualizada correctamente.");
             }
-            return new ResultError("error", 209, "No existe una cuenta de Jira con esa ID.", null, null);
+            return new ResultError(209, "No existe una cuenta de Jira con esa ID.");
         }
 
         // DELETE api/values/5
