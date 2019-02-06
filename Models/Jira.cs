@@ -14,5 +14,7 @@ namespace GttApiWeb.Models
         public string url { get; set; }
         public string proyect { get; set; }
         public string componente { get; set; }
+        public string issue { get; set; }
+
     }
 }
