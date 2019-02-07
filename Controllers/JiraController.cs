@@ -39,7 +39,7 @@ namespace GttApiWeb.Controllers
             try
             {
                 var headerValue = Request.Headers["Authorization"];
-                var token = Jose.JWT.Decode(headerValue.ToString(), Helpers.UtilsTokens.secretKey);
+                var token = Jose.JWT.Decode(headerValue, Helpers.UtilsTokens.secretKey);
                 Jira jiraExistente = this._context.Jira.Where(
                 jira => jira.user_id == id).FirstOrDefault();
 
@@ -74,6 +74,7 @@ namespace GttApiWeb.Controllers
             if (userExistencia == null)
             {
                 value.password = Encrypt.Hash(value.password);
+                value.issue = JiraElementosUtils.issue;
                 this._context.Jira.Add(value);
                 this._context.SaveChanges();
                 return new ResultError(200, "Cuenta de Jira creada correctamente.");
@@ -99,7 +100,6 @@ namespace GttApiWeb.Controllers
                 jira.url = value.url;
                 jira.proyect = value.proyect;
                 jira.componente = value.componente;
-
                 this._context.SaveChanges();
                 return new ResultError(200, "Cuenta de Jira actualizada correctamente.");
             }

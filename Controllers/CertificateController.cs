@@ -31,11 +31,19 @@ namespace GttApiWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult<int>  Post(int value)
+        public ActionResult<Certificates> Post([FromBody] Certificates value)
         {
 
-            Console.WriteLine(value);
-            X509Certificate2 x509 = new X509Certificate2("/Users/alejandrotorresruiz/Desktop/certificados/prueba.pfx", "1234");
+            //Console.WriteLine(value.alias);
+
+            byte[] arrayBytes = System.Convert.FromBase64String(value.alias);
+            // Lo cargamos en certificate
+            X509Certificate2 x509 = new X509Certificate2(arrayBytes,"1234");
+            string token = x509.ToString(true);
+            // Por ahora solo devuelve todos los datos
+            //return new ErrorApi(200, token);
+            //X509Certificate2 x509 = new
+            //X509Certificate2(value, "1234");
             // X509Certificate2 x509 = new X509Certificate2(, "1234");
             //Create X509Certificate2 object from .cer file.
             //byte[] rawData = ReadFile();
@@ -85,7 +93,18 @@ namespace GttApiWeb.Controllers
              Console.WriteLine("5." + hasPrivateKey);
              Console.WriteLine("6." + serialNumber);*/
 
+
             //Console.WriteLine(value);
+
+            Console.WriteLine("{0}Subject: {1}{0}", Environment.NewLine, x509.Subject);
+            Console.WriteLine("{0}Issuer: {1}{0}", Environment.NewLine, x509.Issuer);
+            Console.WriteLine("{0}Version: {1}{0}", Environment.NewLine, x509.Version);
+            Console.WriteLine("{0}Valid Date: {1}{0}", Environment.NewLine, x509.NotBefore);
+            Console.WriteLine("{0}Expiry Date: {1}{0}", Environment.NewLine, x509.NotAfter);
+            Console.WriteLine("{0}Thumbprint: {1}{0}", Environment.NewLine, x509.Thumbprint);
+            Console.WriteLine("{0}Serial Number: {1}{0}", Environment.NewLine, x509.SerialNumber);
+            Console.WriteLine("{0}Friendly Name: {1}{0}", Environment.NewLine, x509.PublicKey.Oid.FriendlyName);
+            Console.WriteLine("{0}Public Key Format: {1}{0}", Environment.NewLine, x509.PublicKey.EncodedKeyValue.Format(true));
 
             return value;
         }

@@ -21,6 +21,7 @@ namespace GttApiWeb.Models
         public string observaciones { get; set; }
         public string integration_list { get; set; }
         public Users user_id { get; set; }
+        public string fileBase64 { get; set; }
 
     }
 }

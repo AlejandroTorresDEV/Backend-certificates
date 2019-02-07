@@ -10,7 +10,6 @@
     <DotNetCliToolReference Include=" Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <Folder Include="Helpers\" />
     <Folder Include="Models\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,5 +39,6 @@
     <Compile Remove="Models\JiraContext.cs" />
     <Compile Remove="Migrations\20190201100157_initial.cs" />
     <Compile Remove="Migrations\20190201100157_initial.Designer.cs" />
+    <Compile Remove="Migrations\20190202121558_initial.cs" />
   </ItemGroup>
 </Project>

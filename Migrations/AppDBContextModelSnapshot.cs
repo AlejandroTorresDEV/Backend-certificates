@@ -64,6 +64,8 @@ namespace GttApiWeb.Migrations
 
                     b.Property<string>("componente");
 
+                    b.Property<string>("issue");
+
                     b.Property<string>("password");
 
                     b.Property<string>("proyect");
