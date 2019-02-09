@@ -26,9 +26,9 @@ namespace GttApiWeb.Controllers
 
         // GET api/jira
         [HttpGet]
-        public ActionResult<String> Get()
+        public List<Certificates> Get()
         {
-            return "hola";
+            return this._context.Certificates.ToList();
         }
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace GttApiWeb.Controllers
             try
             {
                 arrayBytes = System.Convert.FromBase64String(value.base64String);
-                x509 = new X509Certificate2(arrayBytes, "111111");
+                x509 = new X509Certificate2(arrayBytes, value.password);
                 //Obtengo los elementos privados del certificado 
                 value.numero_de_serie = x509.SerialNumber.ToString();
                 value.subject = x509.Subject.ToString();
@@ -53,9 +53,9 @@ namespace GttApiWeb.Controllers
             }
 
             //Si el certificado es correcto lo guardamos
-
             try
             {
+                value.password = Helpers.Encrypt.Hash(value.password);
                 this._context.Certificates.Add(value);
                 this._context.SaveChanges();
                 return new ResultError(201, "Certificado guardado correctamente.");

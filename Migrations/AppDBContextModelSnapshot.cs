@@ -40,6 +40,8 @@ namespace GttApiWeb.Migrations
 
                     b.Property<string>("integration_list");
 
+                    b.Property<string>("nombreFichero");
+
                     b.Property<string>("nombre_cliente");
 
                     b.Property<string>("numero_de_serie");

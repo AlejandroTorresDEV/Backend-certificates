@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GttApiWeb.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20190209111804_initial")]
+    [Migration("20190209144501_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,8 @@ namespace GttApiWeb.Migrations
                     b.Property<string>("id_orga");
 
                     b.Property<string>("integration_list");
+
+                    b.Property<string>("nombreFichero");
 
                     b.Property<string>("nombre_cliente");
 
