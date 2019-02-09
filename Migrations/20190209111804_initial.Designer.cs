@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GttApiWeb.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20190206150832_initial")]
+    [Migration("20190209111804_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,9 +28,13 @@ namespace GttApiWeb.Migrations
 
                     b.Property<string>("alias");
 
+                    b.Property<string>("base64String");
+
                     b.Property<DateTime>("caducidad");
 
                     b.Property<string>("contacto_renovacion");
+
+                    b.Property<bool>("eliminado");
 
                     b.Property<string>("entidad_emisiora");
 
@@ -50,11 +54,7 @@ namespace GttApiWeb.Migrations
 
                     b.Property<string>("subject");
 
-                    b.Property<long?>("user_idid");
-
                     b.HasKey("id");
-
-                    b.HasIndex("user_idid");
 
                     b.ToTable("Certificates");
                 });
@@ -99,13 +99,6 @@ namespace GttApiWeb.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("GttApiWeb.Models.Certificates", b =>
-                {
-                    b.HasOne("GttApiWeb.Models.Users", "user_id")
-                        .WithMany()
-                        .HasForeignKey("user_idid");
                 });
 #pragma warning restore 612, 618
         }

@@ -34,47 +34,55 @@ namespace GttApiWeb.Controllers
         public ActionResult<Certificates> Post([FromBody] Certificates value)
         {
 
-            //Console.WriteLine(value.alias);
+            byte[] arrayBytes = System.Convert.FromBase64String(value.base64String);
 
-            byte[] arrayBytes = System.Convert.FromBase64String(value.alias);
-            // Lo cargamos en certificate
-            X509Certificate2 x509 = new X509Certificate2(arrayBytes,"1234");
-            string token = x509.ToString(true);
-            // Por ahora solo devuelve todos los datos
-            //return new ErrorApi(200, token);
-            //X509Certificate2 x509 = new
-            //X509Certificate2(value, "1234");
-            // X509Certificate2 x509 = new X509Certificate2(, "1234");
-            //Create X509Certificate2 object from .cer file.
-            //byte[] rawData = ReadFile();
+             X509Certificate2 x509 = new X509Certificate2(arrayBytes, "111111");
 
-            /*X509Certificate2 x509 = new X509Certificate2();
-             //x509.Import(value);
+             string token = x509.ToString(true);
 
-            //Print to console information contained in the certificate.
-            Console.WriteLine("{0}Subject: {1}{0}", Environment.NewLine, x509.Subject);
-            Console.WriteLine("{0}Issuer: {1}{0}", Environment.NewLine, x509.Issuer);
-            Console.WriteLine("{0}Version: {1}{0}", Environment.NewLine, x509.Version);
-            Console.WriteLine("{0}Valid Date: {1}{0}", Environment.NewLine, x509.NotBefore);
-            Console.WriteLine("{0}Expiry Date: {1}{0}", Environment.NewLine, x509.NotAfter);
-            Console.WriteLine("{0}Thumbprint: {1}{0}", Environment.NewLine, x509.Thumbprint);
-            Console.WriteLine("{0}Serial Number: {1}{0}", Environment.NewLine, x509.SerialNumber);
-            Console.WriteLine("{0}Friendly Name: {1}{0}", Environment.NewLine, x509.PublicKey.Oid.FriendlyName);
-            Console.WriteLine("{0}Public Key Format: {1}{0}", Environment.NewLine, x509.PublicKey.EncodedKeyValue.Format(true));
-            //Console.WriteLine("{0}Raw Data Length: {1}{0}", Environment.NewLine, x509.RawData.Length);
-            //Console.WriteLine("{0}Certificate to string: {1}{0}", Environment.NewLine, x509.ToString(true));
+             //Obtengo los elementos privados del certificado 
+             value.numero_de_serie = x509.SerialNumber.ToString();
+             value.subject = x509.Subject.ToString();
+             value.entidad_emisiora = x509.Issuer.ToString();
+             value.caducidad = x509.NotAfter;
 
-            //Console.WriteLine("{0}Certificate to XML String: {1}{0}", Environment.NewLine, x509.PublicKey.Key.ToXmlString(false));
+             this._context.Certificates.Add(value);
+             this._context.SaveChanges();
+             // Por ahora solo devuelve todos los datos
+             //return new ErrorApi(200, token);
+             //X509Certificate2 x509 = new
+             //X509Certificate2(value, "1234");
+             // X509Certificate2 x509 = new X509Certificate2(, "1234");
+             //Create X509Certificate2 object from .cer file.
+             //byte[] rawData = ReadFile();
 
-            var num =  (Environment.NewLine, x509.SerialNumber);
+             /*X509Certificate2 x509 = new X509Certificate2();
+              //x509.Import(value);
 
-            Console.WriteLine("-------------------" + num);
-            /*
-            //Add the certificate to a X509Store.
-            X509Store store = new X509Store();
-            store.Open(OpenFlags.MaxAllowed);
-            store.Add(x509);
-            store.Close();*/
+             //Print to console information contained in the certificate.
+             Console.WriteLine("{0}Subject: {1}{0}", Environment.NewLine, x509.Subject);
+             Console.WriteLine("{0}Issuer: {1}{0}", Environment.NewLine, x509.Issuer);
+             Console.WriteLine("{0}Version: {1}{0}", Environment.NewLine, x509.Version);
+             Console.WriteLine("{0}Valid Date: {1}{0}", Environment.NewLine, x509.NotBefore);
+             Console.WriteLine("{0}Expiry Date: {1}{0}", Environment.NewLine, x509.NotAfter);
+             Console.WriteLine("{0}Thumbprint: {1}{0}", Environment.NewLine, x509.Thumbprint);
+             Console.WriteLine("{0}Serial Number: {1}{0}", Environment.NewLine, x509.SerialNumber);
+             Console.WriteLine("{0}Friendly Name: {1}{0}", Environment.NewLine, x509.PublicKey.Oid.FriendlyName);
+             Console.WriteLine("{0}Public Key Format: {1}{0}", Environment.NewLine, x509.PublicKey.EncodedKeyValue.Format(true));
+             //Console.WriteLine("{0}Raw Data Length: {1}{0}", Environment.NewLine, x509.RawData.Length);
+             //Console.WriteLine("{0}Certificate to string: {1}{0}", Environment.NewLine, x509.ToString(true));
+
+             //Console.WriteLine("{0}Certificate to XML String: {1}{0}", Environment.NewLine, x509.PublicKey.Key.ToXmlString(false));
+
+             var num =  (Environment.NewLine, x509.SerialNumber);
+
+             Console.WriteLine("-------------------" + num);
+             /*
+             //Add the certificate to a X509Store.
+             X509Store store = new X509Store();
+             store.Open(OpenFlags.MaxAllowed);
+             store.Add(x509);
+             store.Close();*/
 
             //String byteCertificado = 
 
@@ -97,15 +105,14 @@ namespace GttApiWeb.Controllers
             //Console.WriteLine(value);
 
             Console.WriteLine("{0}Subject: {1}{0}", Environment.NewLine, x509.Subject);
-            Console.WriteLine("{0}Issuer: {1}{0}", Environment.NewLine, x509.Issuer);
-            Console.WriteLine("{0}Version: {1}{0}", Environment.NewLine, x509.Version);
-            Console.WriteLine("{0}Valid Date: {1}{0}", Environment.NewLine, x509.NotBefore);
-            Console.WriteLine("{0}Expiry Date: {1}{0}", Environment.NewLine, x509.NotAfter);
-            Console.WriteLine("{0}Thumbprint: {1}{0}", Environment.NewLine, x509.Thumbprint);
-            Console.WriteLine("{0}Serial Number: {1}{0}", Environment.NewLine, x509.SerialNumber);
-            Console.WriteLine("{0}Friendly Name: {1}{0}", Environment.NewLine, x509.PublicKey.Oid.FriendlyName);
-            Console.WriteLine("{0}Public Key Format: {1}{0}", Environment.NewLine, x509.PublicKey.EncodedKeyValue.Format(true));
-
+             Console.WriteLine("{0}Issuer: {1}{0}", Environment.NewLine, x509.Issuer);
+             Console.WriteLine("{0}Version: {1}{0}", Environment.NewLine, x509.Version);
+             Console.WriteLine("{0}Valid Date: {1}{0}", Environment.NewLine, x509.NotBefore);
+             Console.WriteLine("{0}Expiry Date: {1}{0}", Environment.NewLine, x509.NotAfter);
+             Console.WriteLine("{0}Thumbprint: {1}{0}", Environment.NewLine, x509.Thumbprint);
+             Console.WriteLine("{0}Serial Number: {1}{0}", Environment.NewLine, x509.SerialNumber);
+             Console.WriteLine("{0}Friendly Name: {1}{0}", Environment.NewLine, x509.PublicKey.Oid.FriendlyName);
+             Console.WriteLine("{0}Public Key Format: {1}{0}", Environment.NewLine, x509.PublicKey.EncodedKeyValue.Format(true));
             return value;
         }
 
