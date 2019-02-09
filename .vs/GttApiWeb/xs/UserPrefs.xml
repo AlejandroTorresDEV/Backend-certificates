@@ -1,11 +1,9 @@
 ﻿<Properties StartupConfiguration="{50F99A9D-CE3F-4F4A-9CAB-11A535DA752D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Certificates.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/CertificateController.cs">
     <Files>
       <File FileName="Models/Users.cs" Line="12" Column="34" />
-      <File FileName="Controllers/CertificateController.cs" Line="50" Column="14" />
-      <File FileName="Controllers/JiraController.cs" Line="45" Column="17" />
-      <File FileName="Controllers/UsersController.cs" Line="47" Column="30" />
-      <File FileName="Models/Certificates.cs" Line="26" Column="27" />
+      <File FileName="Controllers/CertificateController.cs" Line="91" Column="33" />
+      <File FileName="Models/Certificates.cs" Line="22" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

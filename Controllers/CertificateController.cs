@@ -68,5 +68,46 @@ namespace GttApiWeb.Controllers
             }
         }
 
+        /*
+        * PUT api/certificate/id
+        * Método para actualizar un certificado.       
+        */
+        [HttpPut("{id}")]
+        public ActionResult<ResultError> Put(long id, [FromBody] Certificates value)
+        {
+            Console.WriteLine("----------------");
+            Console.WriteLine("----------------"+id);
+
+            try
+            {
+                //Certificates certificate = this._context.Certificates.Find(value.id);
+                /*Certificates certificates = this._context.Certificates.Where(
+                              certificate => certificate.id == id).FirstOrDefault();*/
+                
+                Certificates certificates = this._context.Certificates.Find(id);
+                if (certificates != null)
+                {
+                    certificates.alias = value.alias;
+                    certificates.base64String = value.base64String;
+                    certificates.caducidad = value.caducidad;
+                    certificates.contacto_renovacion = value.contacto_renovacion;
+                    certificates.eliminado = value.eliminado;
+                    certificates.entidad_emisiora = value.entidad_emisiora;
+                    certificates.id_orga = value.id_orga;
+                    certificates.integration_list = value.integration_list;
+                    certificates.nombreFichero = value.nombreFichero;
+                    this._context.SaveChanges();
+                    return new ResultError(200, "Certificado actualizado correctamente.");
+                }
+                return new ResultError(209, "No existe un certificado con ese ID.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return new ResultError(500, "Ha ocurrido un error.");
+            }
+
+        }
+
     }
 }
