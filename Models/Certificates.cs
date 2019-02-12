@@ -24,5 +24,7 @@ namespace GttApiWeb.Models
         public string base64String { get; set; }
         public Boolean eliminado { get; set; }
         public string nombreFichero { get; set; }
+        public Boolean caducado { get; set; }
+        public Boolean subido { get; set; }
     }
 }

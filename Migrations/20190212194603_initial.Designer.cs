@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GttApiWeb.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20190209144501_initial")]
+    [Migration("20190212194603_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,8 @@ namespace GttApiWeb.Migrations
                     b.Property<string>("alias");
 
                     b.Property<string>("base64String");
+
+                    b.Property<bool>("caducado");
 
                     b.Property<DateTime>("caducidad");
 
@@ -53,6 +55,8 @@ namespace GttApiWeb.Migrations
                     b.Property<string>("password");
 
                     b.Property<string>("repositorio");
+
+                    b.Property<bool>("subido");
 
                     b.Property<string>("subject");
 

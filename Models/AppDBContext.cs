@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 namespace GttApiWeb.Models
 {
     public class AppDBContext : DbContext{
+        public AppDBContext(){}
 
-        public AppDBContext(DbContextOptions<AppDBContext> options): base(options)
-        {}
+        public AppDBContext(DbContextOptions<AppDBContext> options): base(options){}
 
         public DbSet<Users> Users { get; set; }
         public DbSet<Jira> Jira { get; set; }

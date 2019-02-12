@@ -28,6 +28,8 @@ namespace GttApiWeb.Migrations
 
                     b.Property<string>("base64String");
 
+                    b.Property<bool>("caducado");
+
                     b.Property<DateTime>("caducidad");
 
                     b.Property<string>("contacto_renovacion");
@@ -51,6 +53,8 @@ namespace GttApiWeb.Migrations
                     b.Property<string>("password");
 
                     b.Property<string>("repositorio");
+
+                    b.Property<bool>("subido");
 
                     b.Property<string>("subject");
 

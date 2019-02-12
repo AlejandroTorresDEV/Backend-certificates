@@ -28,7 +28,9 @@ namespace GttApiWeb.Migrations
                     integration_list = table.Column<string>(nullable: true),
                     base64String = table.Column<string>(nullable: true),
                     eliminado = table.Column<bool>(nullable: false),
-                    nombreFichero = table.Column<string>(nullable: true)
+                    nombreFichero = table.Column<string>(nullable: true),
+                    caducado = table.Column<bool>(nullable: false),
+                    subido = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

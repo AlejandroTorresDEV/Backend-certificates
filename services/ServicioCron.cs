@@ -4,14 +4,12 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using GttApiWeb.Models;
-using System.Linq;
-using GttApiWeb.Controllers;
+using Microsoft.EntityFrameworkCore;
 
 namespace GttApiWeb.services
 {
     internal class ServicioCron : IHostedService,IDisposable
     {
-        private AppDBContext _context;
         private readonly ILogger _logger;
         private Timer _timer;
 
@@ -22,18 +20,42 @@ namespace GttApiWeb.services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
+        
             _logger.LogInformation("Arrancando el servicio");
-            _timer = new Timer(DoWork,null, TimeSpan.Zero, TimeSpan.FromDays(5));
+            _timer = new Timer(DoWork,null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
-            return Task.CompletedTask;
+
+                return Task.CompletedTask;
         }
 
         public void DoWork(object state)
         {
-
             _logger.LogInformation("Iniciando el servicio");
-            CertificateController certificateController = new CertificateController(_context);
-            //.prueba();
+
+            var optionsBuild = new DbContextOptionsBuilder<AppDBContext>();
+
+            optionsBuild.UseNpgsql("Host=192.168.99.101; Port=5432;Username=postgres;Password=example;Database=ApiGtt;");
+
+            using (var context = new AppDBContext(optionsBuild.Options))
+            {
+                context.Certificates.Load();
+
+                var today = DateTime.Now;
+                Console.WriteLine(today);
+
+                var fecha_actual_mas_mes = today.AddMonths(3);
+
+                foreach (var certificates in context.Certificates.Local)
+                {
+
+                    if(certificates.caducidad.AddMonths(3) <= fecha_actual_mas_mes)
+                    {
+                        Console.WriteLine(certificates.caducidad);
+                        certificates.eliminado = false;
+                        context.SaveChanges();
+                    }
+                }
+            }
         }
 
 

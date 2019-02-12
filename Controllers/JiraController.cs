@@ -89,13 +89,14 @@ namespace GttApiWeb.Controllers
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e);
                     return new ResultError(500, "Ha ocurrido un error.");
                 }
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return Unauthorized();
-
             }
         }
 

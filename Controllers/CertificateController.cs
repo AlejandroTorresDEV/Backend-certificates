@@ -77,7 +77,6 @@ namespace GttApiWeb.Controllers
             {
                 Console.WriteLine(e);
                 return new ResultError(500, "Ha habido un error en el guardado.");
-
             }
         }
 
@@ -133,7 +132,7 @@ namespace GttApiWeb.Controllers
                     certificates.integration_list = value.integration_list;
                     certificates.nombreFichero = value.nombreFichero;
                     this._context.SaveChanges();
-                    return new ResultError(200, "Certificado actualizado correctamente.");
+                    return new ResultError(201, "Certificado actualizado correctamente.");
                 }
                 return new ResultError(209, "No existe un certificado con ese ID.");
             }
@@ -142,7 +141,38 @@ namespace GttApiWeb.Controllers
                 Console.WriteLine(e);
                 return new ResultError(500, "Ha ocurrido un error.");
             }
+        }
 
+        public void prueba()
+        {
+            Console.WriteLine("Prueba......");
+
+            var today = DateTime.Now;
+            Console.WriteLine(today);
+
+            var todayMas1 = today.AddMonths(1);
+
+
+            try{
+
+                Certificates certificates = this._context.Certificates.Find(9);
+                Console.WriteLine(certificates.alias);
+            }
+
+
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+
+            }
+
+            /* var certificate2 = _context.Certificates
+                 .Where(certificate => certificate.caducidad > compareDate);*/
+
+            /* Certificates certificate = (GttApiWeb.Models.Certificates)_context.Certificates
+                 .Where(certi => certi.caducidad.AddMonths(1) <= todayMas1);*/
+
+            //Console.WriteLine(certificate);
         }
 
     }
