@@ -33,7 +33,7 @@ namespace GttApiWeb.services
 
             _logger.LogInformation("Iniciando el servicio");
             CertificateController certificateController = new CertificateController(_context);
-            certificateController.prueba();
+            //.prueba();
         }
 
 

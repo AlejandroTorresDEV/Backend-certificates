@@ -92,6 +92,7 @@ namespace GttApiWeb.Controllers
             byte[] arrayBytes;
             X509Certificate2 x509;
 
+            //Si el id es igual a q significa que tambien ha modficicado el certificado.
             if (id.Equals(1))
             {
                 //Pasamos el string en bae64 para tranformarlo a un array de bytes.
@@ -111,8 +112,6 @@ namespace GttApiWeb.Controllers
                     return new ResultError(400, "El formato del certificado es incorrecto.");
                 }
             }
-
-
 
             try
             {
