@@ -66,8 +66,6 @@ namespace GttApiWeb.Controllers
         [HttpPost]
         public ActionResult<ResultError> Post([FromBody] Jira value)
         {
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine(value);
             Jira userExistencia = this._context.Jira.Where(
                          jira => jira.user_id == value.user_id).FirstOrDefault();
 

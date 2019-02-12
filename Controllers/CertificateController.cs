@@ -25,6 +25,19 @@ namespace GttApiWeb.Controllers
         }
 
         // GET api/jira
+        [HttpGet("{id}")]
+        public ActionResult<Certificates> Get(long id)
+        {
+            Certificates certificates = this._context.Certificates.Find(id);
+
+            if (certificates == null)
+            {
+                return NotFound();
+            }
+            return certificates;
+        }
+
+        // GET api/jira
         [HttpGet]
         public List<Certificates> Get()
         {
@@ -68,31 +81,55 @@ namespace GttApiWeb.Controllers
             }
         }
 
+
         /*
         * PUT api/certificate/id
         * Método para actualizar un certificado.       
         */
         [HttpPut("{id}")]
-        public ActionResult<ResultError> Put(long id, [FromBody] Certificates value)
+        public ActionResult<ResultError> Put(int id, [FromBody] Certificates value)
         {
-            Console.WriteLine("----------------");
-            Console.WriteLine("----------------"+id);
+            byte[] arrayBytes;
+            X509Certificate2 x509;
+
+            if (id.Equals(1))
+            {
+                //Pasamos el string en bae64 para tranformarlo a un array de bytes.
+                try
+                {
+                    arrayBytes = System.Convert.FromBase64String(value.base64String);
+                    x509 = new X509Certificate2(arrayBytes, value.password);
+                    //Obtengo los elementos privados del certificado 
+                    value.numero_de_serie = x509.SerialNumber.ToString();
+                    value.subject = x509.Subject.ToString();
+                    value.entidad_emisiora = x509.Issuer.ToString();
+                    value.caducidad = x509.NotAfter;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return new ResultError(400, "El formato del certificado es incorrecto.");
+                }
+            }
+
+
 
             try
             {
-                //Certificates certificate = this._context.Certificates.Find(value.id);
-                /*Certificates certificates = this._context.Certificates.Where(
-                              certificate => certificate.id == id).FirstOrDefault();*/
-                
-                Certificates certificates = this._context.Certificates.Find(id);
+                Certificates certificates = this._context.Certificates.Find(value.id);
                 if (certificates != null)
                 {
                     certificates.alias = value.alias;
                     certificates.base64String = value.base64String;
                     certificates.caducidad = value.caducidad;
+                    certificates.nombre_cliente = value.nombre_cliente;
                     certificates.contacto_renovacion = value.contacto_renovacion;
                     certificates.eliminado = value.eliminado;
+                    certificates.repositorio = value.repositorio;
+                    certificates.observaciones = value.observaciones;
                     certificates.entidad_emisiora = value.entidad_emisiora;
+                    certificates.numero_de_serie = value.numero_de_serie;
+                    certificates.subject = value.subject;
                     certificates.id_orga = value.id_orga;
                     certificates.integration_list = value.integration_list;
                     certificates.nombreFichero = value.nombreFichero;
