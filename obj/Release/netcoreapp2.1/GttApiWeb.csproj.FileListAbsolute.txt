@@ -1,0 +1,14 @@
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/bin/Release/netcoreapp2.1/GttApiWeb.deps.json
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/bin/Release/netcoreapp2.1/GttApiWeb.runtimeconfig.json
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/bin/Release/netcoreapp2.1/GttApiWeb.runtimeconfig.dev.json
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/bin/Release/netcoreapp2.1/GttApiWeb.dll
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/bin/Release/netcoreapp2.1/GttApiWeb.pdb
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.csprojAssemblyReference.cache
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.csproj.CoreCompileInputs.cache
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.RazorAssemblyInfo.cache
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.RazorAssemblyInfo.cs
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.AssemblyInfoInputs.cache
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.AssemblyInfo.cs
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.RazorTargetAssemblyInfo.cache
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.dll
+/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Release/netcoreapp2.1/GttApiWeb.pdb

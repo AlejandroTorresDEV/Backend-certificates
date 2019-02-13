@@ -34,25 +34,39 @@ namespace GttApiWeb.services
 
             var optionsBuild = new DbContextOptionsBuilder<AppDBContext>();
 
-            optionsBuild.UseNpgsql("Host=192.168.99.101; Port=5432;Username=postgres;Password=example;Database=ApiGtt;");
 
+            //optionsBuild.UseNpgsql("Host=192.168.99.101; Port=5432;Username=postgres;Password=example;Database=ApiGtt;");
+            optionsBuild.UseNpgsql("Host=192.168.99.101; Port=5432;Username=postgres;Password=example;Database=ApiGtt;");
             using (var context = new AppDBContext(optionsBuild.Options))
             {
                 context.Certificates.Load();
 
                 var today = DateTime.Now;
-                Console.WriteLine(today);
 
-                var fecha_actual_mas_mes = today.AddMonths(3);
+                var fecha_actual_mas_mes = today.AddMonths(1);
 
                 foreach (var certificates in context.Certificates.Local)
                 {
 
-                    if(certificates.caducidad.AddMonths(3) <= fecha_actual_mas_mes)
+                    if(certificates.caducidad.AddMonths(1) <= fecha_actual_mas_mes)
                     {
-                        Console.WriteLine(certificates.caducidad);
-                        certificates.eliminado = false;
-                        context.SaveChanges();
+
+                        if(certificates.caducidad < today)
+                        {
+                            _logger.LogInformation("MAS DE UN MES CADUCADOS");
+                            _logger.LogInformation(""+certificates.caducidad);
+
+                        }
+                        if (!certificates.caducado)
+                        {
+                            certificates.caducado = true;
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            certificates.caducado = false;
+                            context.SaveChanges();
+                        }
                     }
                 }
             }
