@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+public enum Estado { ok ,proxima , caducado };
+
 namespace GttApiWeb.Models
 {
     public class Certificates
@@ -24,7 +26,7 @@ namespace GttApiWeb.Models
         public string base64String { get; set; }
         public Boolean eliminado { get; set; }
         public string nombreFichero { get; set; }
-        public Boolean caducado { get; set; }
+        public Estado estado { get; set; }
         public Boolean subido { get; set; }
     }
 }
