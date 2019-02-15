@@ -90,8 +90,11 @@ namespace GttApiWeb.Controllers
         {
             byte[] arrayBytes;
             X509Certificate2 x509;
+            var today = DateTime.Now;
 
-            //Si el id es igual a q significa que tambien ha modficicado el certificado.
+            var fecha_actual_mas_mes = today.AddMonths(1);
+
+            //Si el id es igual a q significa que tambien se ha modficicado el certificado.
             if (id.Equals(1))
             {
                 //Pasamos el string en bae64 para tranformarlo a un array de bytes.
@@ -104,6 +107,26 @@ namespace GttApiWeb.Controllers
                     value.subject = x509.Subject.ToString();
                     value.entidad_emisiora = x509.Issuer.ToString();
                     value.caducidad = x509.NotAfter;
+
+                    //Si la caducidad es menor a la fecha actual + 1 mes comprobamos si esta caducado o a punto de caducar.
+                    if (value.caducidad <= fecha_actual_mas_mes)
+                    {
+                        if (value.caducidad <= today)
+                        {
+                            value.estado = Estado.caducado;
+                            value.eliminado = false;
+                        }
+                        else if (value.caducidad > today)
+                        {
+                            value.estado = Estado.proxima;
+
+                        }
+                    }
+                    else
+                    {
+                        value.estado = Estado.ok;
+                        value.eliminado = false;
+                    }
                 }
                 catch (Exception e)
                 {

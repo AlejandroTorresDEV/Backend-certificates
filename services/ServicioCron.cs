@@ -22,7 +22,7 @@ namespace GttApiWeb.services
         {
         
             _logger.LogInformation("Arrancando el servicio");
-            _timer = new Timer(DoWork,null, TimeSpan.Zero, TimeSpan.FromHours(12));
+            _timer = new Timer(DoWork,null, TimeSpan.Zero, TimeSpan.FromSeconds(35));
 
 
                 return Task.CompletedTask;
@@ -34,8 +34,6 @@ namespace GttApiWeb.services
 
             var optionsBuild = new DbContextOptionsBuilder<AppDBContext>();
 
-
-            //optionsBuild.UseNpgsql("Host=192.168.99.101; Port=5432;Username=postgres;Password=example;Database=ApiGtt;");
             optionsBuild.UseNpgsql("Host=192.168.99.101; Port=5432;Username=postgres;Password=example;Database=ApiGtt;");
             using (var context = new AppDBContext(optionsBuild.Options))
             {
@@ -49,27 +47,22 @@ namespace GttApiWeb.services
                 {
                     if (certificates.caducidad <= fecha_actual_mas_mes)
                     {
-                        _logger.LogInformation("CADUCIDAD" + certificates.caducidad);
-                        if (certificates.caducidad < today)
+                        if(certificates.estado == Estado.ok)
                         {
-                            _logger.LogInformation("fecha actual"+ fecha_actual_mas_mes);
-                            _logger.LogInformation("MAS DE UN MES CADUCADOS");
-                            _logger.LogInformation("" + certificates.caducidad);
-                            certificates.estado = Estado.caducado;
-                            certificates.eliminado = true;
-                            context.SaveChanges();
+                            if (certificates.caducidad < today)
+                            {
+                                certificates.estado = Estado.caducado;
+                                certificates.eliminado = true;
+                                context.SaveChanges();
 
-                        }else 
-                        if (certificates.caducidad > today)
-                        {
-                            _logger.LogInformation("PROXIMO A CADUCAR");
-                            _logger.LogInformation("" + certificates.caducidad);
-                            certificates.estado = Estado.proxima;
-                            context.SaveChanges();
-
+                            }
+                            else if (certificates.caducidad > today)
+                            {
+                                certificates.estado = Estado.proxima;
+                                context.SaveChanges();
+                            }
                         }
-
-                    }
+                    }  
                 }
             }
         }

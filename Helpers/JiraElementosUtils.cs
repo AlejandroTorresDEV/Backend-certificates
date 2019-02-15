@@ -3,7 +3,7 @@ namespace GttApiWeb.Helpers
 {
     public class JiraElementosUtils
     {
-        public static string issue = "Explotación";
+        public static string issue = "Explotacion";
     }
 }
 
