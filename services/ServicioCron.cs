@@ -22,7 +22,7 @@ namespace GttApiWeb.services
         {
         
             _logger.LogInformation("Arrancando el servicio");
-            _timer = new Timer(DoWork,null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            _timer = new Timer(DoWork,null, TimeSpan.Zero, TimeSpan.FromHours(12));
 
 
                 return Task.CompletedTask;
@@ -47,31 +47,33 @@ namespace GttApiWeb.services
 
                 foreach (var certificates in context.Certificates.Local)
                 {
-
-                    if(certificates.caducidad.AddMonths(1) <= fecha_actual_mas_mes)
+                    if (certificates.caducidad <= fecha_actual_mas_mes)
                     {
-
-                        if(certificates.caducidad < today)
+                        _logger.LogInformation("CADUCIDAD" + certificates.caducidad);
+                        if (certificates.caducidad < today)
                         {
+                            _logger.LogInformation("fecha actual"+ fecha_actual_mas_mes);
                             _logger.LogInformation("MAS DE UN MES CADUCADOS");
-                            _logger.LogInformation(""+certificates.caducidad);
+                            _logger.LogInformation("" + certificates.caducidad);
+                            certificates.estado = Estado.caducado;
+                            certificates.eliminado = true;
+                            context.SaveChanges();
+
+                        }else 
+                        if (certificates.caducidad > today)
+                        {
+                            _logger.LogInformation("PROXIMO A CADUCAR");
+                            _logger.LogInformation("" + certificates.caducidad);
+                            certificates.estado = Estado.proxima;
+                            context.SaveChanges();
 
                         }
-                        if (!certificates.caducado)
-                        {
-                            certificates.caducado = true;
-                            context.SaveChanges();
-                        }
-                        else
-                        {
-                            certificates.caducado = false;
-                            context.SaveChanges();
-                        }
+
                     }
                 }
             }
         }
-
+    
 
         public Task StopAsync(CancellationToken cancellationToken)
         {

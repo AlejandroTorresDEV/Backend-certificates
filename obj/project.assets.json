@@ -11797,11 +11797,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/GttApiWeb.csproj",
+      "projectUniqueName": "/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/GttApiWeb.csproj",
       "projectName": "GttApiWeb",
-      "projectPath": "/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/GttApiWeb.csproj",
+      "projectPath": "/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/GttApiWeb.csproj",
       "packagesPath": "/Users/alejandrotorresruiz/.nuget/packages/",
-      "outputPath": "/Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/",
+      "outputPath": "/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

@@ -26,3 +26,17 @@ C:/Users/Pedro/source/repos/GttApi/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/G
 /Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.RazorTargetAssemblyInfo.cache
 /Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.dll
 /Users/alejandrotorresruiz/Desktop/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.pdb
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/bin/Debug/netcoreapp2.1/GttApiWeb.deps.json
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/bin/Debug/netcoreapp2.1/GttApiWeb.runtimeconfig.json
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/bin/Debug/netcoreapp2.1/GttApiWeb.runtimeconfig.dev.json
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/bin/Debug/netcoreapp2.1/GttApiWeb.dll
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/bin/Debug/netcoreapp2.1/GttApiWeb.pdb
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.csprojAssemblyReference.cache
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.csproj.CoreCompileInputs.cache
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.RazorAssemblyInfo.cache
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.RazorAssemblyInfo.cs
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.AssemblyInfoInputs.cache
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.AssemblyInfo.cs
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.RazorTargetAssemblyInfo.cache
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.dll
+/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/Debug/netcoreapp2.1/GttApiWeb.pdb

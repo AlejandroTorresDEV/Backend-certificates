@@ -28,8 +28,6 @@ namespace GttApiWeb.Migrations
 
                     b.Property<string>("base64String");
 
-                    b.Property<bool>("caducado");
-
                     b.Property<DateTime>("caducidad");
 
                     b.Property<string>("contacto_renovacion");
@@ -37,6 +35,8 @@ namespace GttApiWeb.Migrations
                     b.Property<bool>("eliminado");
 
                     b.Property<string>("entidad_emisiora");
+
+                    b.Property<int>("estado");
 
                     b.Property<string>("id_orga");
 

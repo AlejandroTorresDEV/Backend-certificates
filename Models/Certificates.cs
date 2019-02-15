@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-public enum Estado { ok ,proxima , caducado };
+public enum Estado { ok ,proxima , caducado,subido };
 
 namespace GttApiWeb.Models
 {

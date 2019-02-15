@@ -29,7 +29,7 @@ namespace GttApiWeb.Migrations
                     base64String = table.Column<string>(nullable: true),
                     eliminado = table.Column<bool>(nullable: false),
                     nombreFichero = table.Column<string>(nullable: true),
-                    caducado = table.Column<bool>(nullable: false),
+                    estado = table.Column<int>(nullable: false),
                     subido = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>

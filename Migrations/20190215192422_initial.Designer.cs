@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GttApiWeb.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20190212194603_initial")]
+    [Migration("20190215192422_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,8 +30,6 @@ namespace GttApiWeb.Migrations
 
                     b.Property<string>("base64String");
 
-                    b.Property<bool>("caducado");
-
                     b.Property<DateTime>("caducidad");
 
                     b.Property<string>("contacto_renovacion");
@@ -39,6 +37,8 @@ namespace GttApiWeb.Migrations
                     b.Property<bool>("eliminado");
 
                     b.Property<string>("entidad_emisiora");
+
+                    b.Property<int>("estado");
 
                     b.Property<string>("id_orga");
 
