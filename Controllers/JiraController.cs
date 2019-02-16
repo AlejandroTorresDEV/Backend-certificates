@@ -67,6 +67,9 @@ namespace GttApiWeb.Controllers{
                     if (userExistencia == null){
                         value.password = Encrypt.Hash(value.password);
                         value.issue = JiraElementosUtils.issue;
+                        value.url = JiraElementosUtils.url;
+                        value.componente = JiraElementosUtils.componente;
+                        value.proyect = JiraElementosUtils.proyecto;
                         this._context.Jira.Add(value);
                         this._context.SaveChanges();
                         return new ResultError(200, "Cuenta de Jira creada correctamente.");

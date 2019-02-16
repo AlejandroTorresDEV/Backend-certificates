@@ -11,6 +11,7 @@ namespace GttApiWeb.Helpers
         public string id { get; set; }
         public string jwt { get; set; }
         public string rolUser { get; set;}
+
         public ResultError(int statusCode,String mensaje)
         {
             this.statusCode = statusCode;
