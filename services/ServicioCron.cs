@@ -22,25 +22,26 @@ namespace GttApiWeb.services
         {
         
             _logger.LogInformation("Arrancando el servicio");
+            //Le asignamos que empieze el timer cuando se incie la aplicacion y que se repita cada 35 segundos.
             _timer = new Timer(DoWork,null, TimeSpan.Zero, TimeSpan.FromSeconds(35));
-
-
-                return Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public void DoWork(object state)
         {
-            _logger.LogInformation("Iniciando el servicio");
+            _logger.LogInformation("Iniciando el DOWORK");
 
+            //Recogemos el contexto actual para poder utilizarlo y le asignamos una direccion de BD.
             var optionsBuild = new DbContextOptionsBuilder<AppDBContext>();
-
             optionsBuild.UseNpgsql("Host=192.168.99.101; Port=5432;Username=postgres;Password=example;Database=ApiGtt;");
+
             using (var context = new AppDBContext(optionsBuild.Options))
             {
+                //Iniciamos el contexto.
                 context.Certificates.Load();
 
+                //Obtenemos el dia actual y el dia actual + 1 mes para calcular el estado de los certificados.
                 var today = DateTime.Now;
-
                 var fecha_actual_mas_mes = today.AddMonths(1);
 
                 foreach (var certificates in context.Certificates.Local)

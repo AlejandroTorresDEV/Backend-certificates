@@ -11801,13 +11801,13 @@
       "projectName": "GttApiWeb",
       "projectPath": "/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/GttApiWeb.csproj",
       "packagesPath": "/Users/alejandrotorresruiz/.nuget/packages/",
-      "outputPath": "/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj/",
+      "outputPath": "/Users/alejandrotorresruiz/Desktop/PROYECTO GTT/GttApiWeb/GttApiWeb/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/alejandrotorresruiz/.nuget/NuGet/NuGet.Config"
+        "/Users/alejandrotorresruiz/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -11832,8 +11832,7 @@
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.1.1, )",
-            "autoReferenced": true
+            "version": "[2.1.1, )"
           },
           "Microsoft.AspNetCore.Razor.Design": {
             "suppressParent": "All",
@@ -11849,6 +11848,7 @@
             "version": "[2.1.4, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true

@@ -95,11 +95,9 @@ namespace GttApiWeb.Controllers
             var fecha_actual_mas_mes = today.AddMonths(1);
 
             //Si el id es igual a q significa que tambien se ha modficicado el certificado.
-            if (id.Equals(1))
-            {
+            if (id.Equals(1)){
                 //Pasamos el string en bae64 para tranformarlo a un array de bytes.
-                try
-                {
+                try{
                     arrayBytes = System.Convert.FromBase64String(value.base64String);
                     x509 = new X509Certificate2(arrayBytes, value.password);
                     //Obtengo los elementos privados del certificado 
@@ -109,27 +107,22 @@ namespace GttApiWeb.Controllers
                     value.caducidad = x509.NotAfter;
 
                     //Si la caducidad es menor a la fecha actual + 1 mes comprobamos si esta caducado o a punto de caducar.
-                    if (value.caducidad <= fecha_actual_mas_mes)
-                    {
-                        if (value.caducidad <= today)
-                        {
+                    if (value.caducidad <= fecha_actual_mas_mes){
+                        if (value.caducidad <= today){
                             value.estado = Estado.caducado;
+                            value.eliminado = true;
+                        }
+                        else if (value.caducidad > today){
+                            value.estado = Estado.proxima;
                             value.eliminado = false;
                         }
-                        else if (value.caducidad > today)
-                        {
-                            value.estado = Estado.proxima;
-
-                        }
                     }
-                    else
-                    {
+                    else{
                         value.estado = Estado.ok;
                         value.eliminado = false;
                     }
                 }
-                catch (Exception e)
-                {
+                catch (Exception e){
                     Console.WriteLine(e);
                     return new ResultError(400, "El formato del certificado es incorrecto.");
                 }
@@ -137,9 +130,9 @@ namespace GttApiWeb.Controllers
 
             try
             {
+                //Si existe ese certificado se actualizara
                 Certificates certificates = this._context.Certificates.Find(value.id);
-                if (certificates != null)
-                {
+                if (certificates != null){
                     certificates.alias = value.alias;
                     certificates.base64String = value.base64String;
                     certificates.caducidad = value.caducidad;

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 public enum Estado { ok ,proxima , caducado,subido };
 
@@ -22,7 +19,6 @@ namespace GttApiWeb.Models
         public string repositorio { get; set; }
         public string observaciones { get; set; }
         public string integration_list { get; set; }
-        //public Users user_id { get; set; }
         public string base64String { get; set; }
         public Boolean eliminado { get; set; }
         public string nombreFichero { get; set; }

@@ -12,25 +12,16 @@ namespace GttApiWeb.Controllers
     public class AuthController : ControllerBase
     {
 
-        Array secretKey = new byte[] { 164, 60, 194, 0, 161, 189, 41, 38, 130, 89, 141, 164, 45, 170, 159, 209, 69, 137, 243, 216, 191, 131, 47, 250, 32, 107, 231, 117, 37, 158, 225, 234 };
+        private readonly AppDBContext _context;
 
         public AuthController(AppDBContext contex)
         {
             this._context = contex;
         }
 
-        private readonly AppDBContext _context;
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // POST api/auth
         [HttpPost]
         public ActionResult<ResultError> Post([FromBody] Users value){
-
             try
             {
                 Users UserResult = this._context.Users.Where(
@@ -46,7 +37,7 @@ namespace GttApiWeb.Controllers
                             { "name", UserResult.username },
                             { "id" , UserResult.id}
                         };
-                        string token = Jose.JWT.Encode(payload, secretKey, JwsAlgorithm.HS256);
+                        string token = Jose.JWT.Encode(payload, UtilsTokens.secretKey, JwsAlgorithm.HS256);
 
                         return new ResultError( 200, "Login realizado correctamente.", token, "" + UserResult.id,UserResult.rolUser.ToString());
                     }
@@ -57,19 +48,6 @@ namespace GttApiWeb.Controllers
                 Console.WriteLine(e);
                 return NotFound();
             }
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
